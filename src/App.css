@@ -1,0 +1,444 @@
+/* ============================================================
+   Student Portfolio — App.css
+   Premium light developer-portfolio theme
+   Font: Inter (system UI professional sans-serif)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ----------------------------------------
+   1. Design Tokens / CSS Variables
+---------------------------------------- */
+:root {
+  /* Colors */
+  --bg: #f8fafc;
+  --bg-secondary: #eef2f7;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --success: #10b981;
+  --success-light: #ecfdf5;
+
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --gradient-text: linear-gradient(90deg, #2563eb, #1d4ed8);
+  --gradient-subtle: linear-gradient(135deg, #eff6ff 0%, #ecfdf5 100%);
+
+  /* Elevation */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 6px 20px rgba(37, 99, 235, 0.12);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.2s var(--ease);
+  --transition-mid: 0.35s var(--ease);
+
+  /* Layout */
+  --max-width: 860px;
+}
+
+/* ----------------------------------------
+   2. Reset & Base
+---------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* Visible, accessible focus state */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ----------------------------------------
+   3. Fade-in Animation Utility
+---------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app > * {
+  animation: fadeInUp 0.6s var(--ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .app > * {
+    animation: none;
+  }
+}
+
+/* ----------------------------------------
+   4. Page Container
+---------------------------------------- */
+.app {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ----------------------------------------
+   5. Navbar — sticky premium bar
+---------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  padding: 18px 24px;
+  margin: 0 -24px 16px;
+  background: rgba(248, 250, 252, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar a {
+  position: relative;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 6px 2px;
+  transition: color var(--transition-fast);
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-primary);
+  transition: width var(--transition-mid);
+}
+
+.navbar a:hover {
+  color: var(--text-primary);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* ----------------------------------------
+   6. Hero Section
+---------------------------------------- */
+.header {
+  position: relative;
+  text-align: center;
+  padding: 100px 20px 70px;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.header h1 {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.6rem, 6vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.header p {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--primary-light);
+  border: 1px solid var(--border);
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-mid);
+}
+
+.header p:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------
+   7. About Section — elegant white card
+---------------------------------------- */
+.about {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin: 28px 0;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-mid);
+}
+
+.about:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.about h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about h2::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+
+.about p {
+  max-width: 600px;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ----------------------------------------
+   8. Skills Section — elegant white card + tag grid
+---------------------------------------- */
+.skills {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  margin: 28px 0;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-mid);
+}
+
+.skills:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--success-light);
+}
+
+.skills h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skills h2::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  flex-shrink: 0;
+}
+
+.skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skills li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--primary-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 9px 18px;
+  cursor: default;
+  transition: all var(--transition-fast);
+}
+
+.skills li:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ----------------------------------------
+   9. Footer
+---------------------------------------- */
+.footer {
+  text-align: center;
+  padding: 48px 20px 40px;
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* ----------------------------------------
+   10. Responsive — Tablet & Mobile
+---------------------------------------- */
+@media (max-width: 768px) {
+  .header {
+    padding: 90px 16px 60px;
+  }
+
+  .about,
+  .skills {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 14px 16px;
+  }
+
+  .navbar a {
+    font-size: 0.82rem;
+  }
+
+  .header h1 {
+    font-size: 2.2rem;
+  }
+
+  .header p {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+
+  .about,
+  .skills {
+    padding: 24px;
+    border-radius: var(--radius-md);
+  }
+
+  .about h2,
+  .skills h2 {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
+
+  .skills li {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+  }
+
+  .footer {
+    padding: 36px 16px 32px;
+  }
+}
+
+@media (max-width: 400px) {
+  .app {
+    padding: 0 16px;
+  }
+
+  .header h1 {
+    font-size: 1.85rem;
+  }
+
+  .about,
+  .skills {
+    padding: 20px;
+  }
+}
